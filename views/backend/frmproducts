@@ -1,0 +1,80 @@
+	<h3 class="tit"><?=$title;?></h3>
+        <?php
+           $mode=$this->uri->segment(4);
+           if($mode=='insert'):
+                           $id = '';
+                           $prd_nm = '';
+                           $spllr_id = '';
+						   $ctgr_id = '';
+                           $qtyprunt = '';
+                           $untprc = '';
+                           $untstk = '';
+                           $untordr = '';
+                           $reordlvl = '';
+                           $discntd = '';
+           else :                           
+                           $id = $products->ProductID;
+                           $prd_nm = $products->ProductName;
+                           $spllr_id = $products->SupplierID;
+						   $ctgr_id = $products->CategoryID;
+                           $qtyprunt = $products->QuantityPerUnit;
+                           $untprc = $products->UnitPrice;
+                           $untstk = $products->UnitsInStock;
+                           $untordr = $products->UnitsOnOrder;
+                           $reordlvl = $products->ReorderLevel;
+                           $discntd = $products->Discontinued;
+           endif;                
+
+        ?>
+                        <!-- Table (TABLE) -->
+                        <br /><br />
+        
+      <form id="commentForm" name="commentForm"  method="post" action="<?=site_url('backend/products/process/'.$mode.'/'.$id);?>">
+                      <input type="hidden" name='id' value="<?=$id;?>">
+                      <input type="hidden" name='mode' value="<?=$mode;?>">
+                        <fieldset>                                
+                                <table class="nostyle">
+                                        <tr>
+                                                <td style="width:100px;">Product Name:</td>
+                                                <td><input type="text" value="<?=$prd_nm;?>" size="40" name="ProductName" class="input-text" required="required" /></td>
+                                        </tr>                                        
+                                        <tr>
+                                                <td style="width:100px;">Supplier ID:</td>
+                                                <td><input type="text" value="<?=$spllr_id;?>" size="5" name="SupplierID" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Category ID:</td>
+                                                <td><input type="text" value="<?=$ctgr_id;?>" size="5" name="CategoryID" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Quantity Per Unit:</td>
+                                                <td><input type="text" value="<?=$qtyprunt;?>" size="30" name="QuantityPerUnit" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Unit Price:</td>
+                                                <td><input type="text" value="<?=$untprc;?>" size="15" name="UnitPrice" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Units In Stock:</td>
+                                                <td><input type="text" value="<?=$untstk;?>" size="5" name="UnitsInStock" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Units On Order:</td>
+                                                <td><input type="text" value="<?=$untordr;?>" size="5" name="UnitsOnOrder" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Reorder Level:</td>
+                                                <td><input type="text" value="<?=$reordlvl;?>" size="5" name="ReorderLevel" class="input-text" required="required" /></td>
+                                        </tr>
+                                        <tr>
+                                                <td style="width:100px;">Discontinued:</td>
+                                                <td><input type="text" value="<?=$discntd;?>" size="5" name="Discontinued" class="input-text" required="required" /></td>
+                                        </tr>                                        
+                                        <tr>
+                                                <td colspan="2" class="t-right">
+                                                        <input type="submit" name="btnSimpan"  class="input-submit" value="Submit" /></td>
+                                        </tr>
+										
+                                </table>
+                        </fieldset>
+      </form>
