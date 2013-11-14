@@ -1,0 +1,62 @@
+<h1><?=$title;?></h1>
+
+                        <!-- Table (TABLE) -->
+                        <br />
+                        
+                        
+                        <br />
+                        <b>Search By  : </b> 
+                        <form action="<?php print site_url();?>backend/products/cari" method=POST>        
+                        <input type=text name="cari"> 
+                        <select name="jenis">
+                        <option value="ProductName">Product Name</option>
+						<option value="CategoryID">Category ID</option>
+                        </select>        
+                        <input type=submit value=" Search ">
+                        </form>
+                        
+						<a href="<?php print site_url();?>backend/products"> <b>Show All Products</b></a>
+						<br />
+						<?php
+                           echo anchor(site_url('backend/products/form/insert/'),'Input',' class="input-submit"');        
+                        ?>
+						
+						<br />
+                        <table>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Action</th>
+                                    <th>Product Name</th>
+                                    <th>Supplier ID</th>                                            
+                                    <th>Category ID</th>
+                                    <th>Quantity Per Unit</th>
+                                    <th>Unit Price</th>
+                                    <th>Units In Stock</th>                                            
+                                    <th>Units On Order</th>
+                                    <th>Reorder Level</th>                                            
+                                    <th>Discontinued</th>
+                                </tr>                                                                    
+                                
+                                <?php
+                                        $no=0;
+                                        foreach($array_products as $row):        
+                                        $id=$row->ProductID;        
+                                        $no++;        
+                                        $css=($no%2==1)? '' : 'class="bg"';
+                                ?>
+                                <tr <?=$css;?> >
+                                        <td><?=$no;?>.</td>
+                                    <td><?=anchor(site_url('backend/products/process/delete/'.$id),'[delete]').' | '.
+                                               anchor(site_url('backend/products/form/update/'.$id),'[update]');?></td>                                    
+                                    <td><?=$row->ProductName;?></td>
+                                    <td><?=$row->SupplierID;?></td>
+                                    <td><?=$row->CategoryID;?></td>
+                                    <td><?=$row->QuantityPerUnit;?></td>
+                                    <td><?=$row->UnitPrice;?></td>
+                                    <td><?=$row->UnitsInStock;?></td>
+                                    <td><?=$row->UnitsOnOrder;?></td>
+                                    <td><?=$row->ReorderLevel;?></td>
+                                    <td><?=$row->Discontinued;?></td>
+                                </tr>
+                                <?php  endforeach; ?>
+                        </table>
